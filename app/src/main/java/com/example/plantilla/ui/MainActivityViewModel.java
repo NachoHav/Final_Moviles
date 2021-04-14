@@ -29,7 +29,6 @@ public class MainActivityViewModel extends ViewModel {
                 loginMutable.setValue(true);
             }else{
                 mensajeMutable.setValue("Usuario o contreseña incorrecto");
-
             }
         }else{
             mensajeMutable.setValue("Los campos no deben estar vacios, por favor");
