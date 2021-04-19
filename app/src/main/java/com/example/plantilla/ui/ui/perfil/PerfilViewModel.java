@@ -4,19 +4,23 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.plantilla.modelo.Propietario;
+import com.example.plantilla.request.ApiClient;
+
 public class PerfilViewModel extends ViewModel
 {
+    private MutableLiveData<Propietario> propietarioMutable;
 
-    private MutableLiveData<String> mText;
-
-    public PerfilViewModel()
-    {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+    public LiveData<Propietario> getPropietarioMutable () {
+        if ( propietarioMutable == null ) {
+            propietarioMutable = new MutableLiveData<>();
+        }
+        return propietarioMutable;
     }
 
-    public LiveData<String> getText()
-    {
-        return mText;
+    public void cargarPerfil() {
+        ApiClient api = ApiClient.getApi();
+        Propietario propietario = api.obtenerUsuarioActual();
+        propietarioMutable.setValue(propietario);
     }
 }
