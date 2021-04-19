@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             @Override
             public void onChanged(Boolean logueado) {
                 if (logueado) {
-                    Intent i = new Intent(getApplicationContext(), SegundaActividad.class);
+                    Intent i = new Intent(getApplicationContext(), MenuNavegable.class);
                     startActivity(i);
                 }
             }
