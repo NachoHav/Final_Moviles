@@ -20,7 +20,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.plantilla.R;
 
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             @Override
             public void onChanged(Boolean logueado) {
                 if (logueado) {
-                    Intent i = new Intent(getApplicationContext(), MenuNavegable.class);
+                    Intent i = new Intent(getApplicationContext(), MenuNavegableActivity.class);
                     startActivity(i);
                 }
             }
