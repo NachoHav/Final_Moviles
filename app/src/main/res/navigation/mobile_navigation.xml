@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_perfil" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.plantilla.ui.ui.slideshow.SlideshowFragment"
+        android:id="@+id/nav_ubicacion"
+        android:name="com.example.plantilla.ui.ui.ubicacion.UbicacionFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_ubicacion" />
 </navigation>
