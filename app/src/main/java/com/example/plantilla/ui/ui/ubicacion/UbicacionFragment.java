@@ -72,18 +72,7 @@ public class UbicacionFragment extends Fragment {
             @Override
             public void onMapReady(GoogleMap mMap) {
                 mapa = mMap;
-                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
 
-                    return;
-                }
-                mapa.setMyLocationEnabled(true);
                 //To add marker
                 mapa.addMarker(new MarkerOptions().position(INMOBILIARIA)).setTitle("Inmobiliaria Avengers");
                 CameraPosition camPos = new CameraPosition.Builder().target(INMOBILIARIA).zoom(19).bearing(42).tilt(70).build();
@@ -93,5 +82,26 @@ public class UbicacionFragment extends Fragment {
             }
         });
                 return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
     }
 }
