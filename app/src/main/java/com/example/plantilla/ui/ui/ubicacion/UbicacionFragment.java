@@ -28,80 +28,46 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class UbicacionFragment extends Fragment {
+public class UbicacionFragment extends Fragment implements OnMapReadyCallback{
 
-    private UbicacionViewModel ubicacionViewModel;
     private GoogleMap mapa;
-    private MapView mapView;
+
     private static final LatLng INMOBILIARIA = new LatLng(37.239612077095906, -115.81207967660222);
 
-  /*  private class MapaActual implements OnMapReadyCallback {
-
-        @Override
-        public void onMapReady(GoogleMap googleMap) {
-            mapa = googleMap;
-            mapa.addMarker(new MarkerOptions().position(INMOBILIARIA)).setTitle("Inmobiliaria Avengers");
-            CameraPosition camPos = new CameraPosition.Builder().target(INMOBILIARIA).zoom(19).bearing(42).tilt(70).build();
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(camPos);
-
-            mapa.animateCamera(cameraUpdate);
-        }
-    }*/
-
-   /* @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapa)).getMapAsync( new MapaActual());
-    }*/
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ubicacionViewModel =
-                new ViewModelProvider(this).get(UbicacionViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_ubicacion, container, false);
-        mapView = root.findViewById(R.id.mapa);
-        mapView.onCreate(savedInstanceState);
-        mapView.onResume();
-        try {
-            MapsInitializer.initialize(getActivity().getApplicationContext());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.onCreate(savedInstanceState);
 
-        mapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap mMap) {
-                mapa = mMap;
 
-                //To add marker
-                mapa.addMarker(new MarkerOptions().position(INMOBILIARIA)).setTitle("Inmobiliaria Avengers");
-                CameraPosition camPos = new CameraPosition.Builder().target(INMOBILIARIA).zoom(19).bearing(42).tilt(70).build();
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(camPos);
-                mapa.animateCamera(cameraUpdate);
 
-            }
-        });
-                return root;
+        View view = inflater.inflate(R.layout.fragment_ubicacion, container, false);
+        ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapa)).getMapAsync( this);
+
+
+                return view;
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        mapView.onResume();
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        mapView.onPause();
-    }
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mapView.onDestroy();
-    }
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        mapView.onLowMemory();
+    public void onMapReady(GoogleMap googleMap) {
+        mapa = googleMap;
+        mapa.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+
+        CameraPosition camPos =  new CameraPosition.Builder()
+                .target(INMOBILIARIA)
+                .zoom(19)
+                .bearing(90)
+                .tilt(70)
+                .build();
+
+        CameraUpdate camUpdICT = CameraUpdateFactory.newCameraPosition(camPos);
+
+        mapa.animateCamera(camUpdICT);
+
+        mapa.addMarker(
+                new MarkerOptions()
+                        .position(INMOBILIARIA))
+                .setTitle("Area 51");
+
     }
 }

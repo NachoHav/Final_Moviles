@@ -6,7 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ui.ubicacion.UbicacionFragment">
+    
+    <fragment
+        android:id="@+id/mapa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="com.google.android.gms.maps.SupportMapFragment"/>
 
-    <com.google.android.gms.maps.MapView android:id="@+id/mapa" android:layout_width="match_parent" android:layout_height="match_parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
