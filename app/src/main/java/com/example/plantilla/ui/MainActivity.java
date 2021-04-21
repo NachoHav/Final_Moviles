@@ -2,6 +2,7 @@ package com.example.plantilla.ui;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -100,7 +101,21 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 != PackageManager.PERMISSION_GRANTED){
             requestPermissions(new String[]{Manifest.permission.CALL_PHONE},1000);
         }
+        pedirPermisosMapas();
     }
+
+    private void pedirPermisosMapas(){
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.M
+                && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},1000);
+    }
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.M
+                && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1000);
+}}
+
 
     private void inicializarComponentes() {
         etUsuario = findViewById(R.id.etUsuario);
