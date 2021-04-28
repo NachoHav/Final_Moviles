@@ -109,10 +109,21 @@ public Propietario login(String mail, final String password){
     }
 //Actualizar Perfil
     public void actualizarPerfil(Propietario propietario){
+        /*
         int posición=propietarios.indexOf(propietario);
         if(posición!=-1){
             propietarios.set(posición,propietario);
         }
+         */
+
+            usuarioActual.setId(propietario.getId());
+            usuarioActual.setDni(propietario.getDni());
+            usuarioActual.setApellido(propietario.getApellido());
+            usuarioActual.setEmail(propietario.getEmail());
+            usuarioActual.setContraseña(propietario.getContraseña());
+            usuarioActual.setTelefono(propietario.getTelefono());
+
+
     }
 
     //ActualizarInmueble
