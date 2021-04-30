@@ -3,51 +3,43 @@ package com.example.plantilla.ui.ui.inmuebles;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.plantilla.R;
 import com.example.plantilla.modelo.Inmueble;
-import com.example.plantilla.request.ApiClient;
-import com.example.plantilla.ui.ui.home.HomeViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class InmueblesFragment extends Fragment {
-    private HomeViewModel homeViewModel;
 
-    private List<Inmueble> listaInmuebles = new ArrayList<>();
+    private InmueblesViewModel inmueblesViewModel;
+    private List<Inmueble> listaInmuebles;
+    View root;
 
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_inmuebles, container, false);
+        inmueblesViewModel = new ViewModelProvider(this).get(InmueblesViewModel.class);
+        root = inflater.inflate(R.layout.fragment_inmuebles, container, false);
 
-        obtenerInmuebles();
-        generarView(inflater, root);
+        inmueblesViewModel.getListaInmuebleMutable().observe(getViewLifecycleOwner(), new Observer<List<Inmueble>>() {
+            @Override
+            public void onChanged(List<Inmueble> inmuebles) {
+                listaInmuebles = inmuebles;
+                generarView(inflater, root);
+            }
+        });
+
+        inmueblesViewModel.cargarInmuebles();
 
         return root;
-    }
-
-    private void obtenerInmuebles() {
-        ApiClient api = ApiClient.getApi();
-        listaInmuebles = api.obtnerPropiedades();
-        for (Inmueble inmueble :listaInmuebles) {
-            Log.d("msj", inmueble.getDireccion());
-        }
-
     }
 
     private void generarView(LayoutInflater layoutInflater, View root) {
