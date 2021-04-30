@@ -16,5 +16,10 @@
             android:id="@+id/nav_ubicacion"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Ubicacion" />
+        <item
+            android:id="@+id/inmueblesFragment"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Lista de Inmuebles" />
+
     </group>
 </menu>

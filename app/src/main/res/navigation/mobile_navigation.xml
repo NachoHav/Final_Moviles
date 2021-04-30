@@ -22,4 +22,10 @@
         android:name="com.example.plantilla.ui.ui.ubicacion.UbicacionFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_ubicacion" />
+    <fragment
+        android:id="@+id/inmueblesFragment"
+        android:name="com.example.plantilla.ui.ui.inmuebles.InmueblesFragment"
+        android:label="Inmuebles"
+        tools:layout="@layout/fragment_inmuebles" />
+
 </navigation>
