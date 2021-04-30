@@ -27,5 +27,4 @@
         android:name="com.example.plantilla.ui.ui.inmuebles.InmueblesFragment"
         android:label="Inmuebles"
         tools:layout="@layout/fragment_inmuebles" />
-
 </navigation>

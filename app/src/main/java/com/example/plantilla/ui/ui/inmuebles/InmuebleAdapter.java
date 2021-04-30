@@ -46,10 +46,13 @@ public class InmuebleAdapter extends ArrayAdapter<Inmueble> {
         TextView tvDireccion = itemView.findViewById(R.id.tvDireccionInmuebleL);
         TextView tvPrecio = itemView.findViewById(R.id.tvPrecioInmuebleL);
 
+
         Glide.with(getContext())
                 .load(inmueble.getImagen())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(fotoInmueble);
+
+
 
         tvDireccion.setText(inmueble.getDireccion());
         tvPrecio.setText(inmueble.getPrecio()+"");

@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             requestPermissions(new String[]{Manifest.permission.INTERNET},1000);
         }
 
+
         pedirPermisosMapas();
     }
 
