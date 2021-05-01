@@ -6,12 +6,16 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.plantilla.R;
 import com.example.plantilla.modelo.Inmueble;
@@ -44,8 +48,22 @@ public class InmueblesFragment extends Fragment {
 
     private void generarView(LayoutInflater layoutInflater, View root) {
         ArrayAdapter<Inmueble> arrayAdapter = new InmuebleAdapter(getContext(), R.layout.item_inmueble, listaInmuebles, layoutInflater);
-        ListView listView = root.findViewById(R.id.lvInmuebles);
+        final ListView listView = root.findViewById(R.id.lvInmuebles);
 
         listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Inmueble inmueble = listaInmuebles.get(position);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("inmueble", inmueble);
+
+                Navigation.findNavController(view).navigate(R.id.action_inmueblesFragment_to_detalleInmuebleFragment, bundle);
+
+            }
+        });
     }
 }

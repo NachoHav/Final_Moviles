@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onSensorChanged(SensorEvent event)
     {
         float x = event.values[0];
-        Log.d("msj", x + "");
+        //Log.d("msj", x + "");
 
         if(flag && (x > 10 || x < -10)){
             Intent i = new Intent(Intent.ACTION_CALL);
