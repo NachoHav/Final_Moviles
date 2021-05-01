@@ -10,8 +10,12 @@
         android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:lineSpacingExtra="8sp"
         android:text="Inmobiliaria La Punta"
-        android:textSize="25dp"
+        android:textColor="#001029"
+        android:textColorHighlight="#00587A"
+        android:textSize="30sp"
+        android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -19,44 +23,71 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.095" />
 
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="271dp"
+        android:layout_height="231dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="8dp"
+        android:padding="5dp"
+        android:src="@drawable/inmobiliaria"
+        app:layout_constraintBottom_toTopOf="@+id/etUsuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
+        app:layout_constraintVertical_bias="0.425" />
+
     <EditText
         android:id="@+id/etUsuario"
         android:layout_width="307dp"
         android:layout_height="54dp"
         android:ems="10"
-        android:hint="Usuario"
+        android:focusable="true"
+        android:fontFamily="sans-serif-light"
+        android:hint="Ingrese Email"
         android:inputType="textPersonName"
+        android:selectAllOnFocus="false"
         android:text="juan@mail.com"
+        android:textColor="#878585"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#90a4ae"
+        android:textColorLink="#000000"
+        android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
-        app:layout_constraintVertical_bias="0.074" />
+        app:layout_constraintVertical_bias="0.513" />
 
     <EditText
         android:id="@+id/etContrasena"
         android:layout_width="307dp"
         android:layout_height="54dp"
         android:ems="10"
-        android:hint="Contraseña"
-        android:inputType="textPersonName"
+        android:fontFamily="sans-serif-light"
+        android:hint="Ingrese Clave"
+        android:inputType="textPassword"
         android:text="123"
+        android:textColorHint="#90a4ae"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUsuario"
-        app:layout_constraintVertical_bias="0.109" />
+        app:layout_constraintVertical_bias="0.218" />
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="140dp"
-        android:layout_height="51dp"
-        android:text="Login"
+        android:layout_width="306dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#00587A"
+        android:text=" Iniciar Sesión"
+        android:textColor="#FAFBFBFB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etContrasena"
-        app:layout_constraintVertical_bias="0.102" />
+        app:layout_constraintVertical_bias="0.361" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
