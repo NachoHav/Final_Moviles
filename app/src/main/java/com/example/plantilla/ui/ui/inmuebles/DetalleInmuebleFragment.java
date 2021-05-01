@@ -3,6 +3,7 @@ package com.example.plantilla.ui.ui.inmuebles;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -31,16 +32,27 @@ public class DetalleInmuebleFragment extends Fragment {
     private EditText etCodigoInmueble, etAmbientesInmueble, etDireccionInmueble, etPrecioInmueble, etUsoInmueble, etTipoInmueble;
     private CheckBox cbDisponibleInmueble;
     private ImageView ivFotoInmueble;
-    Inmueble inmueble;
+    private Inmueble inmueble;
 
     public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        //inmueble = savedInstanceState == null ? (Inmueble) getArguments().getSerializable("inmueble") : (Inmueble)savedInstanceState.getSerializable("inmueble");
+
+        // HAY un pequeño bug cuando tocamos el CUADRADITO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        if (savedInstanceState != null) {
+            inmueble = (Inmueble)savedInstanceState.getSerializable("inmueble");
+            Log.d("msj", "INMUEBLE " + inmueble.getPrecio() );
+        } else {
+            inmueble = (Inmueble) getArguments().getSerializable("inmueble");
+        }
+
+
+
         detalleInmuebleViewModel = new ViewModelProvider(this).get(DetalleInmuebleViewModel.class);
         root = inflater.inflate(R.layout.fragment_detalle_inmueble, container, false);
 
         inicializarComponentes(root);
-
-        inmueble = (Inmueble) getArguments().getSerializable("inmueble");
 
         detalleInmuebleViewModel.getDetalleInmuebleMutable().observe(getViewLifecycleOwner(), new Observer<Inmueble>() {
             @Override
@@ -89,4 +101,20 @@ public class DetalleInmuebleFragment extends Fragment {
 
     }
 
+
+
+    ////////////////////////////
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("inmueble", inmueble);
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d("msj", "onDestroyView ");
+    }
 }
