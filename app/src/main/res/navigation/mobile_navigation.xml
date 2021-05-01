@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_home">
 
     <fragment
         android:id="@+id/nav_home"
@@ -40,4 +40,23 @@
             android:id="@+id/action_detalleInmuebleFragment_to_inmueblesFragment"
             app:destination="@id/inmueblesFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/inquilinosFragment"
+        android:name="com.example.plantilla.ui.ui.inquilinos.InquilinosFragment"
+        android:label="Inmuebles alquilados"
+        tools:layout="@layout/fragment_inquilinos" >
+        <action
+            android:id="@+id/action_inquilinosFragment_to_detalleInquilinoFragment"
+            app:destination="@id/detalleInquilinoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleInquilinoFragment"
+        android:name="com.example.plantilla.ui.ui.inquilinos.DetalleInquilinoFragment"
+        android:label="Detalles del inquilino"
+        tools:layout="@layout/fragment_detalle_inquilino" >
+        <action
+            android:id="@+id/action_detalleInquilinoFragment_to_inquilinosFragment"
+            app:destination="@id/inquilinosFragment" />
+    </fragment>
+
 </navigation>

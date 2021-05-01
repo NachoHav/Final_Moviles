@@ -1,4 +1,4 @@
-package com.example.plantilla.ui.ui.inmuebles;
+package com.example.plantilla.ui.ui.inquilinos;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -18,15 +18,15 @@ import com.example.plantilla.modelo.Inmueble;
 
 import java.util.List;
 
-public class InmuebleAdapter extends ArrayAdapter<Inmueble> {
+public class InquilinoAdapter extends ArrayAdapter<Inmueble> {
     private Context context;
-    private List<Inmueble> inmuebles;
+    private List<Inmueble> inmueblesAlquilados;
     private LayoutInflater layoutInflater;
 
-    public InmuebleAdapter(@NonNull Context context, int resource, @NonNull List<Inmueble> objects, LayoutInflater layoutInflater) {
+    public InquilinoAdapter(@NonNull Context context, int resource, @NonNull List<Inmueble> objects, LayoutInflater layoutInflater) {
         super(context, resource, objects);
         this.context = context;
-        this.inmuebles = objects;
+        this.inmueblesAlquilados = objects;
         this.layoutInflater = layoutInflater;
 
     }
@@ -37,27 +37,21 @@ public class InmuebleAdapter extends ArrayAdapter<Inmueble> {
         View itemView =  convertView;
 
         if ( itemView==null) {
-            itemView = layoutInflater.inflate(R.layout.item_inmueble, parent, false);
+            itemView = layoutInflater.inflate(R.layout.item_inquilino, parent, false);
         }
 
-        Inmueble inmueble = inmuebles.get(position);
+        Inmueble inmueble = inmueblesAlquilados.get(position);
 
         ImageView fotoInmueble = itemView.findViewById(R.id.ivFotoInmuebleL);
         TextView tvDireccion = itemView.findViewById(R.id.tvDireccionInmuebleL);
-        TextView tvPrecio = itemView.findViewById(R.id.tvPrecioInmuebleL);
-        TextView tvAmbientes = itemView.findViewById(R.id.tvAmbientesInmuebleL);
-
 
         Glide.with(getContext())
                 .load(inmueble.getImagen())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(fotoInmueble);
 
-
-
         tvDireccion.setText(inmueble.getDireccion());
-        tvPrecio.setText(inmueble.getPrecio()+"");
-        tvAmbientes.setText(inmueble.getAmbientes()+"");
+
 
         return itemView;
     }

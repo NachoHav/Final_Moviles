@@ -48,7 +48,7 @@
         android:hint="Ingrese Email"
         android:inputType="textPersonName"
         android:selectAllOnFocus="false"
-        android:text="juan@mail.com"
+        android:text="sonia@mail.com"
         android:textColor="#878585"
         android:textColorHighlight="#FFFFFF"
         android:textColorHint="#90a4ae"
