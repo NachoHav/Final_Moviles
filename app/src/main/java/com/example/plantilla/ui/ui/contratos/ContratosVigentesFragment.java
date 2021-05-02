@@ -1,12 +1,6 @@
-package com.example.plantilla.ui.ui.inquilinos;
+package com.example.plantilla.ui.ui.contratos;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,49 +8,59 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
 import com.example.plantilla.R;
+import com.example.plantilla.modelo.Contrato;
 import com.example.plantilla.modelo.Inmueble;
 import com.example.plantilla.modelo.Inquilino;
+import com.example.plantilla.ui.ui.inquilinos.InquilinoAdapter;
+import com.example.plantilla.ui.ui.inquilinos.InquilinosViewModel;
 
 import java.util.List;
 
-public class InquilinosFragment extends Fragment {
+public class ContratosVigentesFragment extends Fragment {
 
-    private InquilinosViewModel inquilinosViewModel;
+    //CAMBIAR VIEWMODEL
+    private ContratosVigentesViewModel contratosVigentesViewModel;
     private List<Inmueble> listaInmueblesAlquilados;
-    private Inquilino inquilinoActual;
+    private Contrato contratoVigente;
     private View root;
 
     public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        inquilinosViewModel = new ViewModelProvider(this).get(InquilinosViewModel.class);
-        root = inflater.inflate(R.layout.fragment_inquilinos, container, false);
+        contratosVigentesViewModel = new ViewModelProvider(this).get(ContratosVigentesViewModel.class);
+        root = inflater.inflate(R.layout.fragment_contratos_vigentes, container, false);
 
-        inquilinosViewModel.getListaInmuebleMutable().observe(getViewLifecycleOwner(), new Observer<List<Inmueble>>() {
+        contratosVigentesViewModel.getListaInmueblesMutable().observe(getViewLifecycleOwner(), new Observer<List<Inmueble>>() {
             @Override
             public void onChanged(List<Inmueble> inmuebles) {
                 listaInmueblesAlquilados = inmuebles;
                 generarView(inflater, root);
             }
         });
-        inquilinosViewModel.getInquilinoMutable().observe(getViewLifecycleOwner(), new Observer<Inquilino>() {
+        contratosVigentesViewModel.getContratoMutable().observe(getViewLifecycleOwner(), new Observer<Contrato>() {
             @Override
-            public void onChanged(Inquilino inquilino) {
-                inquilinoActual = inquilino;
+            public void onChanged(Contrato contrato) {
+                contratoVigente = contrato;
             }
         });
 
-
-
-        inquilinosViewModel.cargarInmueblesAlquilados();
-
+        contratosVigentesViewModel.cargarInmueblesAlquilados();
 
         return root;
     }
 
+
     private void generarView(LayoutInflater layoutInflater, View root) {
+        // Estamos reutilizando la vista del item inquilino y su adapter
         ArrayAdapter<Inmueble> arrayAdapter = new InquilinoAdapter(getContext(), R.layout.item_inquilino, listaInmueblesAlquilados, layoutInflater);
-        final ListView listView = root.findViewById(R.id.lvInmueblesAlquilados);
+        final ListView listView = root.findViewById(R.id.lvContratosVigentes);
 
         listView.setAdapter(arrayAdapter);
 
@@ -67,10 +71,10 @@ public class InquilinosFragment extends Fragment {
 
                 Inmueble inmueble = listaInmueblesAlquilados.get(position);
 
-                // obtenerInquilino iq
+                // obtenerContratoVigente
 
                 // 1- llamda del metodo al ViewModel(inmueble)
-                inquilinosViewModel.obtenerInquilino(inmueble);
+                contratosVigentesViewModel.obtenerContrato(inmueble);
 
                 // 2- Mutabel en el ViewModel
 
@@ -82,12 +86,16 @@ public class InquilinosFragment extends Fragment {
 
 
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("inquilinoActual", inquilinoActual);
+                bundle.putSerializable("contratoVigente", contratoVigente);
 
-                Navigation.findNavController(view).navigate(R.id.action_inquilinosFragment_to_detalleInquilinoFragment, bundle);
+                Navigation.findNavController(view).navigate(R.id.action_contratosVigentesFragment_to_detalleContratoFragment, bundle);
 
             }
         });
 
+
     }
+
+
+
 }

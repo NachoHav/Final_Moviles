@@ -96,6 +96,8 @@ public class DetalleInmuebleFragment extends Fragment {
 
                 detalleInmuebleViewModel.actualizarDetalleInmueble(inmueble);
 
+                Toast.makeText(getContext(), "Inmueble actualizado con exito.", Toast.LENGTH_LONG).show();
+
             }
         });
 

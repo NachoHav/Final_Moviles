@@ -58,5 +58,23 @@
             android:id="@+id/action_detalleInquilinoFragment_to_inquilinosFragment"
             app:destination="@id/inquilinosFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/contratosVigentesFragment"
+        android:name="com.example.plantilla.ui.ui.contratos.ContratosVigentesFragment"
+        android:label="Contratos vigentes"
+        tools:layout="@layout/fragment_contratos_vigentes" >
+        <action
+            android:id="@+id/action_contratosVigentesFragment_to_detalleContratoFragment"
+            app:destination="@id/detalleContratoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleContratoFragment"
+        android:name="com.example.plantilla.ui.ui.contratos.DetalleContratoFragment"
+        android:label="Detalle Contrato"
+        tools:layout="@layout/fragment_detalle_contrato" >
+        <action
+            android:id="@+id/action_detalleContratoFragment_to_contratosVigentesFragment"
+            app:destination="@id/contratosVigentesFragment" />
+    </fragment>
 
 </navigation>
