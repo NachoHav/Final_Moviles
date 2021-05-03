@@ -26,7 +26,6 @@ import java.util.List;
 
 public class ContratosVigentesFragment extends Fragment {
 
-    //CAMBIAR VIEWMODEL
     private ContratosVigentesViewModel contratosVigentesViewModel;
     private List<Inmueble> listaInmueblesAlquilados;
     private Contrato contratoVigente;
@@ -93,9 +92,6 @@ public class ContratosVigentesFragment extends Fragment {
             }
         });
 
-
     }
-
-
 
 }

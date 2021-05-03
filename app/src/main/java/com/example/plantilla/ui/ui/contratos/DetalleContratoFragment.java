@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -67,6 +68,16 @@ public class DetalleContratoFragment extends Fragment {
         etInmuebleContrato = root.findViewById(R.id.etInmuebleContrato);
         btnPagosContrato = root.findViewById(R.id.btnPagosContrato);
 
+        btnPagosContrato.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("contratoVigente", contratoVigente);
+
+                Navigation.findNavController(v).navigate(R.id.action_detalleContratoFragment_to_pagosFragment, bundle);
+            }
+        });
     }
 
 }
