@@ -1,9 +1,12 @@
 package com.example.plantilla.ui;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -15,7 +18,6 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.plantilla.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 public class MenuNavegableActivity extends AppCompatActivity
 {
@@ -30,14 +32,39 @@ public class MenuNavegableActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setImageResource(R.drawable.ic_exit);
         fab.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+                AlertDialog.Builder alertDialogBuilder=new AlertDialog. Builder (MenuNavegableActivity.this);
+                alertDialogBuilder.setTitle("Confirmar Salir..!!");
+                alertDialogBuilder.setIcon (R.drawable.ic_exit);
+                alertDialogBuilder.setMessage("Estas seguro que quieres salir de la mejor app de la historia");
+                alertDialogBuilder.setCancelable(false);
+
+                alertDialogBuilder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finishAffinity();
+                        System.exit(0);
+
+                    }
+                });
+
+                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText (getApplicationContext(), "Sabia eleccion", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+
+
+            } //
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
