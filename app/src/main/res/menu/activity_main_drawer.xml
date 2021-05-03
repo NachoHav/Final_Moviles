@@ -6,27 +6,27 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_baseline_reduce_capacity_24"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_perfil"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_baseline_person_24"
             android:title="Perfil" />
         <item
             android:id="@+id/nav_ubicacion"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_baseline_location_on_24"
             android:title="Ubicacion" />
         <item
             android:id="@+id/inmueblesFragment"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_baseline_home_24"
             android:title="Inmuebles" />
         <item
             android:id="@+id/inquilinosFragment"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_baseline_people_24"
             android:title="Inquilinos" />
         <item
             android:id="@+id/contratosVigentesFragment"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_baseline_border_color_24"
             android:title="Contratos vigentes" />
 
     </group>
