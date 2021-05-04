@@ -26,7 +26,8 @@
             android:name=".ui.MenuNavegableActivity"
             android:label="@string/title_activity_menu_navegable"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+            android:label="" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

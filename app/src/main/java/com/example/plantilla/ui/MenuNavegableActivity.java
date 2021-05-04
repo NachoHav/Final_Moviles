@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -16,6 +17,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.plantilla.R;
+import com.example.plantilla.modelo.Propietario;
+import com.example.plantilla.request.ApiClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -23,6 +26,7 @@ public class MenuNavegableActivity extends AppCompatActivity
 {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private TextView tvNombreUsuarioActual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,7 +36,7 @@ public class MenuNavegableActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setImageResource(R.drawable.ic_exit);
+        fab.setImageResource(R.drawable.ic_exit_2);
         fab.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -77,6 +81,11 @@ public class MenuNavegableActivity extends AppCompatActivity
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        View root = navigationView.getHeaderView(0);
+        TextView nombre = root.findViewById(R.id.textView);
+        nombre.setText(obtenerNombreUsuarioActual());
+
     }
 
     @Override
@@ -94,4 +103,12 @@ public class MenuNavegableActivity extends AppCompatActivity
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
+    private String obtenerNombreUsuarioActual() {
+        ApiClient apiClient = ApiClient.getApi();
+        Propietario propietario = apiClient.obtenerUsuarioActual();
+        return propietario.getApellido() + " " + propietario.getNombre() + " - " + propietario.getEmail();
+    }
+
 }

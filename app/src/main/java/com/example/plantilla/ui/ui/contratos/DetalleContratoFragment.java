@@ -45,7 +45,7 @@ public class DetalleContratoFragment extends Fragment {
                 contratoVigente = contrato;
 
                 etCodigoContrato.setText(contrato.getIdContrato()+"");
-                etFFinContrato.setText(contrato.getFechaInicio());
+                etFInicioContrato.setText(contrato.getFechaInicio());
                 etFFinContrato.setText(contrato.getFechaFin());
                 etMontoContrato.setText(contrato.getMontoAlquiler()+"");
                 etInquilinoContrato.setText(contrato.getInquilino().getApellido() +" "+contrato.getInquilino().getNombre());

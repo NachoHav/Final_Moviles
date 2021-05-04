@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 //Dialogo
 
                 new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("Adventencia")
+                        .setTitle("Información")
                         .setMessage(mensaje)
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             @Override
